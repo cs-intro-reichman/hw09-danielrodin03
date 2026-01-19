@@ -36,8 +36,7 @@ public class LanguageModel {
 		String window = "";
         In in = new In(fileName);
         for (int i = 0; i < windowLength; i++) {
-         char c = in.readChar();
-         window += c;  
+         window += in.readChar();  
         }
         while (!in.isEmpty()) {
             char c = in.readChar();
@@ -87,11 +86,13 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
+        if (initialText.length() >= textLength) return initialText.substring(0, textLength);
 		if (initialText.length() < windowLength) return initialText;
         StringBuilder generatedText = new StringBuilder(initialText);
         String window = initialText.substring(initialText.length() - windowLength);
         while (generatedText.length() < textLength) {
             List probs = CharDataMap.get(window);
+            if (probs == null) break;
             char nextChar = getRandomChar(probs);
             generatedText.append(nextChar);
             window = generatedText.substring(generatedText.length() - windowLength);
