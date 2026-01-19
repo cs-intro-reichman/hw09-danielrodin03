@@ -92,7 +92,6 @@ public class LanguageModel {
         String window = initialText.substring(initialText.length() - windowLength);
         while (generatedText.length() < textLength) {
             List probs = CharDataMap.get(window);
-            if (probs == null) break;
             char nextChar = getRandomChar(probs);
             generatedText.append(nextChar);
             window = generatedText.substring(generatedText.length() - windowLength);
@@ -105,7 +104,7 @@ public class LanguageModel {
 		StringBuilder str = new StringBuilder();
 		for (String key : CharDataMap.keySet()) {
 			List keyProbs = CharDataMap.get(key);
-			str.append(key + ":" + keyProbs + "\n");
+			str.append(key + ": " + keyProbs + "\n");
 		}
 		return str.toString();
 	}
