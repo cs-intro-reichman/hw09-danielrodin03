@@ -24,7 +24,7 @@ public class List {
 
     /** Returns the CharData of the first element in this list. */
     public CharData getFirst() {
-        if (first.cp == null) return null;
+        if (first == null) return null;
         return first.cp;
     }
 
@@ -38,13 +38,15 @@ public class List {
     
     /** GIVE Textual representation of this list. */
     public String toString() {
+        if (size == 0) return "()";
         Node current = first;
-        StringBuilder str = new StringBuilder();
+        StringBuilder str = new StringBuilder("(");
         while (current != null) {
             str.append(current.cp.toString());
-            str.append(" ");
+            if (current.next != null) str.append(" ");
             current = current.next;
         }
+        str.append(")");
         return str.toString();
     }
 
