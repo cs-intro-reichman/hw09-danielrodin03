@@ -105,7 +105,7 @@ public class LanguageModel {
 		StringBuilder str = new StringBuilder();
 		for (String key : CharDataMap.keySet()) {
 			List keyProbs = CharDataMap.get(key);
-			str.append(key + ": " + keyProbs + "\n");
+			str.append(key + ":" + keyProbs + "\n");
 		}
 		return str.toString();
 	}
