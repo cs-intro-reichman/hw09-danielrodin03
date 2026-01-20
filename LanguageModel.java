@@ -90,7 +90,7 @@ public class LanguageModel {
 		if (initialText.length() < windowLength) return initialText;
         StringBuilder generatedText = new StringBuilder(initialText);
         String window = initialText.substring(initialText.length() - windowLength);
-        while (generatedText.length() < textLength) {
+        while (generatedText.length() < textLength + initialText.length()) {
             List probs = CharDataMap.get(window);
             if (probs == null) break;
             char nextChar = getRandomChar(probs);
